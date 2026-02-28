@@ -1,31 +1,1030 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mode Passion</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rosafa — Restaurant Troyes | Cuisine raffinée au cœur de la cité médiévale</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C4A265;
+    --gold-light: #D4B87A;
+    --gold-dark: #A68845;
+    --cream: #F5F0E8;
+    --cream-dark: #EBE4D6;
+    --charcoal: #1A1A1A;
+    --charcoal-light: #2D2D2D;
+    --warm-black: #111111;
+    --text-light: #F5F0E8;
+    --text-muted: #999185;
+    --burgundy: #6B2D3E;
+    --olive: #4A5D3A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--warm-black);
+    color: var(--text-light);
+    overflow-x: hidden;
+  }
+
+  /* ═══════════════════════ NAVIGATION ═══════════════════════ */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 1.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.4s ease;
+    background: transparent;
+  }
+
+  nav.scrolled {
+    background: rgba(17, 17, 17, 0.95);
+    backdrop-filter: blur(20px);
+    padding: 1rem 4rem;
+    border-bottom: 1px solid rgba(196, 162, 101, 0.15);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position: relative;
+    transition: color 0.3s;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    padding: 0.6rem 1.8rem;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold) !important;
+    font-size: 0.8rem !important;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+
+  .nav-cta:hover {
+    background: var(--gold);
+    color: var(--warm-black) !important;
+  }
+
+  /* ═══════════════════════ HERO ═══════════════════════ */
+  .hero {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(17,17,17,0.3) 0%, rgba(17,17,17,0.1) 40%, rgba(17,17,17,0.7) 80%, rgba(17,17,17,1) 100%),
+      linear-gradient(135deg, #2a1f14 0%, #1a1510 30%, #0f0d0a 70%, #1a1510 100%);
+    background-size: cover;
+  }
+
+  .hero-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image: 
+      radial-gradient(circle at 20% 50%, var(--gold) 1px, transparent 1px),
+      radial-gradient(circle at 80% 20%, var(--gold) 1px, transparent 1px),
+      radial-gradient(circle at 60% 80%, var(--gold) 1px, transparent 1px);
+    background-size: 80px 80px, 120px 120px, 100px 100px;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    animation: fadeUp 1.2s ease-out;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.5rem 1.5rem;
+    border: 1px solid rgba(196, 162, 101, 0.3);
+    margin-bottom: 2.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    animation: fadeUp 1.2s ease-out 0.2s backwards;
+  }
+
+  .hero-badge .star { font-size: 0.6rem; }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(4rem, 10vw, 9rem);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 1.2s ease-out 0.4s backwards;
+  }
+
+  .hero h1 span {
+    display: block;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold);
+    font-size: 0.6em;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+    animation: fadeUp 1.2s ease-out 0.6s backwards;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    animation: fadeUp 1.2s ease-out 0.8s backwards;
+  }
+
+  .btn-primary {
+    padding: 1rem 3rem;
+    background: var(--gold);
+    color: var(--warm-black);
+    border: none;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(196, 162, 101, 0.2);
+  }
+
+  .btn-secondary {
+    padding: 1rem 3rem;
+    background: transparent;
+    color: var(--text-light);
+    border: 1px solid rgba(255,255,255,0.2);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  .scroll-indicator span {
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+  }
+
+  /* ═══════════════════════ SECTION INTRO ═══════════════════════ */
+  .section-intro {
+    padding: 8rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .intro-left {
+    position: relative;
+  }
+
+  .intro-image-container {
+    position: relative;
+    aspect-ratio: 4/5;
+    background: linear-gradient(135deg, #2a2015, #1a1510);
+    overflow: hidden;
+  }
+
+  .intro-image-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(196, 162, 101, 0.03) 2px,
+        rgba(196, 162, 101, 0.03) 4px
+      );
+    z-index: 1;
+  }
+
+  .intro-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--text-muted);
+    background: linear-gradient(160deg, #2a2218 0%, #1a1510 50%, #25201a 100%);
+  }
+
+  .intro-accent {
+    position: absolute;
+    top: -2rem;
+    left: -2rem;
+    width: 120px;
+    height: 120px;
+    border: 1px solid rgba(196, 162, 101, 0.2);
+  }
+
+  .intro-rating {
+    position: absolute;
+    bottom: -1.5rem;
+    right: -1.5rem;
+    background: var(--gold);
+    color: var(--warm-black);
+    padding: 1.5rem 2rem;
+    text-align: center;
+    z-index: 2;
+  }
+
+  .intro-rating .number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .intro-rating .label {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 0.3rem;
+  }
+
+  .intro-right h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+  }
+
+  .intro-right h2 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .intro-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin-bottom: 2rem;
+  }
+
+  .intro-right p {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .intro-details {
+    display: flex;
+    gap: 3rem;
+    margin-top: 2.5rem;
+  }
+
+  .intro-detail {
+    text-align: left;
+  }
+
+  .intro-detail .value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--gold);
+  }
+
+  .intro-detail .desc {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 0.3rem;
+  }
+
+  /* ═══════════════════════ MENU SECTION ═══════════════════════ */
+  .section-menu {
+    padding: 8rem 4rem;
+    background: linear-gradient(180deg, var(--warm-black) 0%, #151210 50%, var(--warm-black) 100%);
+    text-align: center;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 400;
+    margin-bottom: 4rem;
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .menu-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(196, 162, 101, 0.1);
+    padding: 3rem 2rem;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .menu-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+  }
+
+  .menu-card:hover {
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(196, 162, 101, 0.25);
+    transform: translateY(-5px);
+  }
+
+  .menu-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .menu-card-image {
+    width: 100%;
+    aspect-ratio: 16/10;
+    background: linear-gradient(135deg, #2a2218, #1a1510);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    overflow: hidden;
+  }
+
+  .menu-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+
+  .menu-card p {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .menu-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  .menu-cta {
+    margin-top: 4rem;
+  }
+
+  /* ═══════════════════════ AVIS SECTION ═══════════════════════ */
+  .section-reviews {
+    padding: 8rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 4rem;
+  }
+
+  .review-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 2.5rem;
+    text-align: left;
+    transition: all 0.3s ease;
+  }
+
+  .review-card:hover {
+    border-color: rgba(196, 162, 101, 0.2);
+  }
+
+  .review-stars {
+    color: var(--gold);
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+    margin-bottom: 1.5rem;
+  }
+
+  .review-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    line-height: 1.8;
+    color: var(--cream-dark);
+    margin-bottom: 1.5rem;
+  }
+
+  .review-author {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .review-source {
+    font-size: 0.7rem;
+    color: rgba(153, 145, 133, 0.6);
+    margin-top: 0.3rem;
+  }
+
+  /* ═══════════════════════ HORAIRES & CONTACT ═══════════════════════ */
+  .section-contact {
+    padding: 8rem 4rem;
+    background: linear-gradient(180deg, var(--warm-black) 0%, #151210 100%);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: start;
+  }
+
+  .contact-divider-v {
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(196,162,101,0.2), transparent);
+  }
+
+  .contact-col h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 2.5rem;
+    color: var(--gold);
+  }
+
+  .hours-list {
+    list-style: none;
+  }
+
+  .hours-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.95rem;
+    font-weight: 300;
+  }
+
+  .hours-list .day { color: var(--text-light); }
+  .hours-list .time { color: var(--text-muted); }
+  .hours-list .closed { color: var(--burgundy); font-style: italic; }
+
+  .contact-info {
+    margin-top: 1rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .contact-icon {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(196, 162, 101, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    color: var(--gold);
+  }
+
+  .contact-item .text {
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  .contact-item .text strong {
+    display: block;
+    font-weight: 500;
+    color: var(--text-light);
+    margin-bottom: 0.2rem;
+  }
+
+  /* ═══════════════════════ RESERVATION CTA ═══════════════════════ */
+  .section-cta {
+    padding: 8rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-bg-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: 
+      radial-gradient(circle at 30% 40%, var(--gold) 1px, transparent 1px),
+      radial-gradient(circle at 70% 60%, var(--gold) 1px, transparent 1px);
+    background-size: 60px 60px, 90px 90px;
+  }
+
+  .section-cta h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .section-cta h2 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .section-cta p {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+    position: relative;
+  }
+
+  /* ═══════════════════════ FOOTER ═══════════════════════ */
+  footer {
+    padding: 4rem;
+    border-top: 1px solid rgba(196, 162, 101, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+
+  .footer-text {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+  }
+
+  .footer-social {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .footer-social a {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: all 0.3s;
+  }
+
+  .footer-social a:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  /* ═══════════════════════ WATERMARK ═══════════════════════ */
+  .mockup-badge {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 9999;
+    background: var(--burgundy);
+    color: white;
+    padding: 0.5rem 1.2rem;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Outfit', sans-serif;
+    border-radius: 2px;
+  }
+
+  /* ═══════════════════════ ANIMATIONS ═══════════════════════ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(10px); }
+  }
+
+  /* ═══════════════════════ RESPONSIVE ═══════════════════════ */
+  @media (max-width: 1024px) {
+    nav { padding: 1.2rem 2rem; }
+    .section-intro { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 2rem; }
+    .menu-grid { grid-template-columns: 1fr 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .contact-divider-v { display: none; }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero h1 { font-size: 3.5rem; }
+    .menu-grid { grid-template-columns: 1fr; }
+    .hero-actions { flex-direction: column; align-items: center; }
+    .section-menu, .section-reviews, .section-contact, .section-cta { padding: 4rem 1.5rem; }
+    .section-cta h2 { font-size: 2.5rem; }
+    footer { flex-direction: column; gap: 2rem; text-align: center; }
+  }
+</style>
 </head>
 <body>
-    <header>
-        <h1>Mode Passion</h1>
-        <nav>
-            <a href="#">Homme</a>
-            <a href="#">Femme</a>
-            <a href="#">Enfant</a>
-            <a href="#">Panier</a> </nav>
-    </header>
 
-    <section class="produits">
-        <h2>Polo New Balance neuf avec étiquette</h2>
-        <img src="polo-new-balance.jpg" alt="Polo New Balance noir">
-        <p>Ce polo New Balance est neuf avec étiquette. Il est 100% coton et est parfait pour un look décontracté.</p>
-        <p>Prix : 33,03€</p>
-        <button>Ajouter au panier</button>
-    </section>
+<!-- MOCKUP BADGE -->
+<div class="mockup-badge">Maquette — meric.dev</div>
 
-    <footer>
-        <p>&copy; 2024 Mode Passion</p>
-    </footer>
+<!-- NAVIGATION -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Rosafa</a>
+  <ul class="nav-links">
+    <li><a href="#decouvrir">Notre histoire</a></li>
+    <li><a href="#carte">La Carte</a></li>
+    <li><a href="#avis">Avis</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#reserver" class="nav-cta">Réserver</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="star">★</span> 4.7 étoiles — 300 avis Google <span class="star">★</span>
+    </div>
+    <h1>
+      Rosafa
+      <span>Troyes</span>
+    </h1>
+    <p class="hero-sub">Cuisine raffinée · 30 Rue Champeaux</p>
+    <div class="hero-actions">
+      <a href="#reserver" class="btn-primary">Réserver une table</a>
+      <a href="#carte" class="btn-secondary">Découvrir la carte</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>Découvrir</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- INTRO / ABOUT -->
+<section class="section-intro" id="decouvrir">
+  <div class="intro-left">
+    <div class="intro-accent"></div>
+    <div class="intro-image-container">
+      <div class="intro-image-placeholder">
+        📷 Photo de l'intérieur du restaurant
+      </div>
+    </div>
+    <div class="intro-rating">
+      <div class="number">4.7</div>
+      <div class="label">Google · 300 avis</div>
+    </div>
+  </div>
+  <div class="intro-right">
+    <h2>Une cuisine<br><em>d'exception</em><br>au cœur de Troyes</h2>
+    <div class="intro-divider"></div>
+    <p>
+      Niché au cœur de la rue piétonne Champeaux, le Restaurant Rosafa vous invite à découvrir une cuisine raffinée mêlant tradition et créativité. Chaque plat est préparé avec des produits frais et de saison, pour une expérience gustative inoubliable.
+    </p>
+    <p>
+      Dans un cadre élégant et chaleureux, notre équipe passionnée vous accueille du mardi au samedi pour un déjeuner ou un dîner qui éveillera vos sens.
+    </p>
+    <div class="intro-details">
+      <div class="intro-detail">
+        <div class="value">30€</div>
+        <div class="desc">Menu 3 plats</div>
+      </div>
+      <div class="intro-detail">
+        <div class="value">30</div>
+        <div class="desc">Couverts</div>
+      </div>
+      <div class="intro-detail">
+        <div class="value">100%</div>
+        <div class="desc">Fait maison</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="section-menu" id="carte">
+  <div class="section-label">Notre Carte</div>
+  <h2 class="section-title">Des plats qui racontent une histoire</h2>
+  <div class="menu-grid">
+    <div class="menu-card">
+      <div class="menu-card-image">🥂</div>
+      <h3>Les Entrées</h3>
+      <p>Ceviche de gambas aux agrumes, velouté de butternut aux épices douces, burrata crémeuse et ses accompagnements de saison</p>
+      <span class="menu-price">À partir de 12€</span>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-image">🍽️</div>
+      <h3>Les Plats</h3>
+      <p>Filet de bœuf sauce au poivre, suprême de volaille aux morilles, risotto aux légumes du marché — des classiques revisités avec créativité</p>
+      <span class="menu-price">À partir de 22€</span>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-image">🍰</div>
+      <h3>Les Desserts</h3>
+      <p>Notre crème brûlée signature, moelleux au chocolat cœur coulant, assiette de fromages affinés de la région</p>
+      <span class="menu-price">À partir de 9€</span>
+    </div>
+  </div>
+  <div class="menu-cta">
+    <a href="#" class="btn-primary">Voir la carte complète</a>
+  </div>
+</section>
+
+<!-- AVIS CLIENTS -->
+<section class="section-reviews" id="avis">
+  <div class="section-label">Ce que nos clients disent</div>
+  <h2 class="section-title">Une expérience unanimement saluée</h2>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★ ★ ★ ★ ★</div>
+      <p class="review-text">"Des plats bien dosés en quantité, cuisinés avec soin, servis avec passion dans un cadre simple et très accueillant. Il faut pousser la porte pour s'apercevoir que je dis vrai !"</p>
+      <div class="review-author">Fabrice M.</div>
+      <div class="review-source">Google · Octobre 2025</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★ ★ ★ ★ ★</div>
+      <p class="review-text">"Absolutely beautiful food! Lovely relaxed atmosphere, staff were friendly and attentive without being overbearing. Superb chef, c'est magnifique !"</p>
+      <div class="review-author">Mandy B.</div>
+      <div class="review-source">Google · 2024</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★ ★ ★ ★ ★</div>
+      <p class="review-text">"Unbelievable food, service top notch. 3 courses for €30 and what excellent value for money. Every course was fantastic, this place is a gem!"</p>
+      <div class="review-author">Tich M.</div>
+      <div class="review-source">Google · 2024</div>
+    </div>
+  </div>
+</section>
+
+<!-- HORAIRES & CONTACT -->
+<section class="section-contact" id="contact">
+  <div class="contact-grid">
+    <div class="contact-col">
+      <h3>Horaires d'ouverture</h3>
+      <ul class="hours-list">
+        <li><span class="day">Lundi</span><span class="closed">Fermé</span></li>
+        <li><span class="day">Mardi</span><span class="time">12h–14h30 · 19h–22h</span></li>
+        <li><span class="day">Mercredi</span><span class="time">12h–14h30 · 19h–22h</span></li>
+        <li><span class="day">Jeudi</span><span class="time">12h–14h30 · 19h–22h</span></li>
+        <li><span class="day">Vendredi</span><span class="time">12h–14h30 · 19h–22h30</span></li>
+        <li><span class="day">Samedi</span><span class="time">12h–14h30 · 19h–22h30</span></li>
+        <li><span class="day">Dimanche</span><span class="closed">Fermé</span></li>
+      </ul>
+    </div>
+    <div class="contact-divider-v"></div>
+    <div class="contact-col">
+      <h3>Nous trouver</h3>
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="text">
+            <strong>Adresse</strong>
+            30 Rue Champeaux<br>10000 Troyes, France
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div class="text">
+            <strong>Téléphone</strong>
+            03 25 41 06 50
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div class="text">
+            <strong>Email</strong>
+            contact@rosafa-troyes.fr
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🅿️</div>
+          <div class="text">
+            <strong>Accès</strong>
+            Rue piétonne en plein centre-ville<br>
+            Parking Cathédrale à 3 min à pied
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA RESERVATION -->
+<section class="section-cta" id="reserver">
+  <div class="cta-bg-pattern"></div>
+  <h2>Réservez votre <em>table</em></h2>
+  <p>Appelez-nous ou réservez directement en ligne — nous avons hâte de vous accueillir.</p>
+  <a href="tel:0325410650" class="btn-primary">Réserver — 03 25 41 06 50</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Rosafa</div>
+  <div class="footer-text">© 2025 Restaurant Rosafa — 30 Rue Champeaux, Troyes</div>
+  <div class="footer-social">
+    <a href="#" title="Instagram">IG</a>
+    <a href="#" title="Facebook">FB</a>
+    <a href="#" title="TripAdvisor">TA</a>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 80) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Intersection Observer for fade-in animations
+  const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.menu-card, .review-card, .contact-col').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'all 0.6s ease-out';
+    observer.observe(el);
+  });
+</script>
+
 </body>
 </html>
